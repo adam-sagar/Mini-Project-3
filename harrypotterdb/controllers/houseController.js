@@ -25,38 +25,46 @@ const importHouses = async () => {
 }
 
 const getHouses = (res) => {
-    Models.House.findAll({}).then(function (data) {
+    Models.House.findAll({})
+    .then(function (data) {
         res.send({ result: 200, data: data })
-    }).catch(err => {
-        throw err
+    })
+    .catch(err=> {
+        res.status(500).send({ error: 'Unable to retrieve houses. Please try again later.' });
     })
 }
 
 const createHouses = (data, res) => {
-    Models.House.create(data).then(function (data) {
+    Models.House.create(data)
+    .then(function (data) {
         res.send({ result: 200, data: data })
-    }).catch(err => {
-        throw err
+    })
+    .catch(err => {
+        res.status(500).send({ error: 'Unable to create house. Please try again later.' });
     })
 }
 
 const updateHouse = (req, res) => {
     Models.House.update(req.body, {
         where: { id: req.params.id }
-    }).then(function (data) {
+    })
+    .then(function (data) {
         res.send({ result: 200, data: data })
-    }).catch(err => {
-        throw err
+    })
+    .catch(err => {
+        res.status(500).send({ error: 'Unable to update house. Please try again later.' });
     })
 }
 
 const deleteHouse = (req, res) => {
     Models.House.destroy({
         where: { id: req.params.id }
-    }).then(function (data) {
+    })
+    .then(function (data) {
         res.send({ result: 200, data: data })
-    }).catch(err => {
-        throw err
+    })
+    .catch(err => {
+        res.status(500).send({ error: 'Unable to delete house. Please try again later.' });
     })
 }
 
