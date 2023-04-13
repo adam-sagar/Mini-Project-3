@@ -16,7 +16,7 @@ Wizard.init({
         type: DataTypes.STRING, allowNull: true, required: true
     },
     house: {
-        type: DataTypes.STRING, allowNull: true, required: true, defaultValue: 'unknown'
+        type: DataTypes.STRING, allowNull: true, required: true, defaultValue: 'unknown' // added house field to make wizard data more interesting. Set to unknown by default because the external API data doesn't provide that information. Can be updated with the updateWizard function.
     }
 },
     {
@@ -25,4 +25,4 @@ Wizard.init({
     }
 ) 
 
-module.exports = Wizard; 
+module.exports = Wizard;   

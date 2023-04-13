@@ -6,8 +6,8 @@ router.get('/', (req, res) => {
     Controllers.wizardController.getWizards(res);
 })
 
-router.get('/:id', (req, res) => {
-    Controllers.wizardController.getWizardById(req, res);
+router.get('/firstName/:firstName', (req, res) => {
+    Controllers.wizardController.getWizardByFirstName(req, res);
 })
 
 router.post('/create', (req, res) => {

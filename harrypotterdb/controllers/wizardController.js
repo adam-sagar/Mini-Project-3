@@ -2,6 +2,7 @@
 const Models = require("../models");
 const axios = require("axios");
 
+// gets data from external API and puts it into the database
 const importWizards = async () => {
     let response = await axios.get('https://wizard-world-api.herokuapp.com/Wizards')
     console.log(response.data);
@@ -20,6 +21,7 @@ const importWizards = async () => {
     console.log('Successfully imported wizards');
 }
  
+// lists all wizards on the endpoint /wizards
 const getWizards = (res) => {
     Models.Wizard.findAll({})
         .then(function (data) {
@@ -30,17 +32,17 @@ const getWizards = (res) => {
         })
 }
 
-const getWizardById = (req, res) => {
+// modified getHouseById function to get a wizard by their first name instead
+const getWizardByFirstName = (req, res) => {
 
-    const id = req.params.id;
+    const firstName = req.params.firstName;
 
     Models.Wizard.findOne({
-        where: { id: id }
+        where: { firstName: firstName }
     })
         .then(function (wizard) {
             if (!wizard) {
-                //if true, there is no wizard with the specified id so it returns an error message, otherwise it sends the corresponding wizard.
-                res.status(404).send({ error: `Wizard with id ${id} not found.` })
+                res.status(404).send({ error: `Wizard with first name ${firstName} not found.` })
             } else {
                 res.send({ result: 200, data: wizard });
             }
@@ -82,5 +84,5 @@ const deleteWizard = (req, res) => {
 }
 
 module.exports = {
-    getWizards, createWizards, updateWizard, deleteWizard, importWizards, getWizardById
+    getWizards, createWizards, updateWizard, deleteWizard, importWizards, getWizardByFirstName
 }

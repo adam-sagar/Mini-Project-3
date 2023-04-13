@@ -2,6 +2,7 @@
 const Models = require("../models");
 const axios = require("axios");
 
+// gets data from external API and puts it into the database
 const importHouses = async () => {
     let response = await axios.get('https://wizard-world-api.herokuapp.com/Houses')
     console.log(response.data);
@@ -24,6 +25,7 @@ const importHouses = async () => {
     console.log('Successfully imported houses');
 }
 
+// lists all houses on the endpoint /houses
 const getHouses = (res) => {
     Models.House.findAll({})
         .then(function (data) {
@@ -34,6 +36,7 @@ const getHouses = (res) => {
         })
 }
 
+// request a single house using its id
 const getHouseById = (req, res) => {
 
     const id = req.params.id;

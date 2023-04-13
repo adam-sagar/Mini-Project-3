@@ -2,6 +2,7 @@
 const Models = require("../models");
 const axios = require("axios");
 
+// gets data from external API and puts it into the database
 const importSpells = async () => {
     let response = await axios.get('https://wizard-world-api.herokuapp.com/Spells')
     for (let spell of response.data) {
@@ -22,6 +23,7 @@ const importSpells = async () => {
     console.log('Successfully imported spells');
 }
 
+// displays a single random spell on the endpoint spells/random
 const getRandomSpell = () => {
     return Models.Spell.findAll({})
         .then(spells => {
@@ -34,6 +36,7 @@ const getRandomSpell = () => {
         });
 };
 
+// lists all spells on the endpoint /spells
 const getSpells = (res) => {
     Models.Spell.findAll({})
         .then(function (data) {
