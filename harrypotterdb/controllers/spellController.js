@@ -36,46 +36,46 @@ const getRandomSpell = () => {
 
 const getSpells = (res) => {
     Models.Spell.findAll({})
-    .then(function (data) {
-        res.send({ result: 200, data: data })
-    })
-     .catch(err=> {
-        res.status(500).send({ error: 'Unable to retrieve spells. Please try again later.' });
-    })
+        .then(function (data) {
+            res.send({ result: 200, data: data })
+        })
+        .catch(err => {
+            res.status(500).send({ error: 'Unable to retrieve spells. Please try again later.' });
+        })
 }
 
 const createSpells = (data, res) => {
     Models.Spell.create(data)
-    .then(function (data) {
-        res.send({ result: 200, data: data })
-    })
-    .catch(err=> {
-        res.status(500).send({ error: 'Unable to create spell. Please try again later.' });
-    })
+        .then(function (data) {
+            res.send({ result: 200, data: data })
+        })
+        .catch(err => {
+            res.status(500).send({ error: 'Unable to create spell. Please try again later.' });
+        })
 }
 
 const updateSpell = (req, res) => {
     Models.Spell.update(req.body, {
         where: { id: req.params.id }
     })
-    .then(function (data) {
-        res.send({ result: 200, data: data })
-    })
-    .catch(err=> {
-        res.status(500).send({ error: 'Unable to update spell. Please try again later.' });
-    })
+        .then(function (data) {
+            res.send({ result: 200, data: data })
+        })
+        .catch(err => {
+            res.status(500).send({ error: 'Unable to update spell. Please try again later.' });
+        })
 }
 
 const deleteSpell = (req, res) => {
     Models.Spell.destroy({
         where: { id: req.params.id }
     })
-    .then(function (data) {
-        res.send({ result: 200, data: data })
-    })
-    .catch(err=> {
-        res.status(500).send({ error: 'Unable to delete spell. Please try again later.' });
-    })
+        .then(function (data) {
+            res.send({ result: 200, data: data })
+        })
+        .catch(err => {
+            res.status(500).send({ error: 'Unable to delete spell. Please try again later.' });
+        })
 }
 
 module.exports = {

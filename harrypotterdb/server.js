@@ -12,6 +12,9 @@ app.use('/api/houses', houseRoutes)
 let spellRoutes = require('./routes/spellRoutes')
 app.use('/api/spells', spellRoutes)
 
+let wizardRoutes = require('./routes/wizardRoutes')
+app.use('/api/wizards', wizardRoutes)
+
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to my Harry Potter database." });
 });
@@ -22,4 +25,5 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
     Controllers.houseController.importHouses();
     Controllers.spellController.importSpells();
+    Controllers.wizardController.importWizards();
 });   
