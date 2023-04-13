@@ -23,11 +23,14 @@ const importSpells = async () => {
 }
 
 const getRandomSpell = () => {
-    return axios.get('https://wizard-world-api.herokuapp.com/Spells')
-        .then(response => {
-            const randomIndex = Math.floor(Math.random() * response.data.length);
-            const randomSpell = response.data[randomIndex];
+    return Models.Spell.findAll({})
+        .then(spells => {
+            const randomIndex = Math.floor(Math.random() * spells.length);
+            const randomSpell = spells[randomIndex];
             return randomSpell;
+        })
+        .catch(err => {
+            throw err;
         });
 };
 
