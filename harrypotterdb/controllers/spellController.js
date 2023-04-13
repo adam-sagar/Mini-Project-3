@@ -2,7 +2,7 @@
 const Models = require("../models");
 const axios = require("axios");
 
-const initialiseSpells = (res) => {
+const importSpells = (res) => {
     axios.get('https://wizard-world-api.herokuapp.com/Spells')
         .then((response) => {
             console.log(response.data);
@@ -10,6 +10,15 @@ const initialiseSpells = (res) => {
         })
         .catch(err => { res.send(err.message) })
 }
+
+const getRandomSpell = () => {
+    return axios.get('https://wizard-world-api.herokuapp.com/Spells')
+        .then(response => {
+            const randomIndex = Math.floor(Math.random() * response.data.length);
+            const randomSpell = response.data[randomIndex];
+            return randomSpell;
+        });
+};
 
 const getSpells = (res) => {
     Models.Spell.findAll({}).then(function (data) {
@@ -48,5 +57,5 @@ const deleteSpell = (req, res) => {
 }
 
 module.exports = {
-    getSpells, createSpells, updateSpell, deleteSpell, initialiseSpells
+    getSpells, createSpells, updateSpell, deleteSpell, importSpells, getRandomSpell
 }

@@ -12,6 +12,9 @@ House.init({
     name: {
         type: DataTypes.STRING, allowNull: true, required: true
     },
+    houseColours: {
+        type: DataTypes.STRING, allowNull: true, required: true
+    },
     founder: {
         type: DataTypes.STRING, allowNull: true, required: true
     },
@@ -22,9 +25,6 @@ House.init({
         type: DataTypes.STRING, allowNull: true, required: true
     },
     commonRoom: {
-        type: DataTypes.STRING, allowNull: true, required: true
-    },
-    traits: {
         type: DataTypes.STRING, allowNull: true, required: true
     }
 },

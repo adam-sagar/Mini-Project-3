@@ -3,18 +3,19 @@ const router = express.Router();
 const Controllers = require("../controllers");
 
 router.get('/', (req, res) => {
-    Controllers.houseController.getUsers(res);
+    Controllers.houseController.getHouses(res);
 })
 
 router.post('/create', (req, res) => {
-    Controllers.houseController.createUsers(req.body, res)
+    Controllers.houseController.createHouses(req.body, res)
 })
 
 router.put('/:id', (req, res) => {
-    Controllers.houseController.updateUser(req, res)
-})
-router.delete('/:id', (req, res) => {
-    Controllers.houseController.deleteUser(req, res)
+    Controllers.houseController.updateHouse(req, res)
 })
 
-module.exports = router;
+router.delete('/:id', (req, res) => {
+    Controllers.houseController.deleteHouse(req, res)
+})
+
+module.exports = router; 

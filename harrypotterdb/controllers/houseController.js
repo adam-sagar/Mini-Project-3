@@ -2,13 +2,26 @@
 const Models = require("../models");
 const axios = require("axios");
 
-const initialiseHouses = (res) => {
-    axios.get('https://wizard-world-api.herokuapp.com/Houses')
-        .then((response) => {
-            console.log(response.data);
-            res.send(response.data);
-        })
-        .catch(err => {res.send(err.message)})
+const importHouses = async () => {
+    let response = await axios.get('https://wizard-world-api.herokuapp.com/Houses')
+    console.log(response.data);
+    for (let house of response.data) {
+        let houseObject = {
+            name: house.name,
+            houseColours: house.houseColours,
+            founder: house.founder,
+            animal: house.animal,
+            ghost: house.ghost,
+            commonRoom: house.commonRoom
+        }
+        console.log(houseObject)
+        console.log(house)
+        const [houseResult, created] = await Models.House.findOrCreate({
+            where: { name: house.name },
+            defaults: houseObject
+        });
+    }
+    console.log('Successfully imported houses');
 }
 
 const getHouses = (res) => {
@@ -48,5 +61,5 @@ const deleteHouse = (req, res) => {
 }
 
 module.exports = {
-    getHouses, createHouses, updateHouse, deleteHouse, initialiseHouses
+    getHouses, createHouses, updateHouse, deleteHouse, importHouses
 }
