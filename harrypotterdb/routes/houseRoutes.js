@@ -6,6 +6,10 @@ router.get('/', (req, res) => {
     Controllers.houseController.getHouses(res);
 })
 
+router.get('/:id', (req, res) => {
+    Controllers.houseController.getHouseById(req, res);
+})
+
 router.post('/create', (req, res) => {
     Controllers.houseController.createHouses(req.body, res)
 })

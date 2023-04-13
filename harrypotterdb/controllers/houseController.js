@@ -34,6 +34,23 @@ const getHouses = (res) => {
     })
 }
 
+const getHouseById = (req, res) => {
+
+    const id = req.params.id;
+
+    Models.House.findOne({
+        where: { id: id }
+    })
+    .then(function (house) {
+        if (!house) {
+            //if true, there is no house with the specified id so it returns an error message, otherwise it sends the corresponding house.
+            res.status(404).send({ error: `House with id ${id} not found.`})
+        } else {
+            res.send({ result: 200, data: house });
+        }
+    })
+}
+
 const createHouses = (data, res) => {
     Models.House.create(data)
     .then(function (data) {
@@ -69,5 +86,5 @@ const deleteHouse = (req, res) => {
 }
 
 module.exports = {
-    getHouses, createHouses, updateHouse, deleteHouse, importHouses
+    getHouses, createHouses, updateHouse, deleteHouse, importHouses, getHouseById
 }
