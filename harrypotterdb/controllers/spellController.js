@@ -2,13 +2,24 @@
 const Models = require("../models");
 const axios = require("axios");
 
-const importSpells = (res) => {
-    axios.get('https://wizard-world-api.herokuapp.com/Spells')
-        .then((response) => {
-            console.log(response.data);
-            res.send(response.data);
-        })
-        .catch(err => { res.send(err.message) })
+const importSpells = async () => {
+    let response = await axios.get('https://wizard-world-api.herokuapp.com/Spells')
+    for (let spell of response.data) {
+        let spellObject = {
+            name: spell.name,
+            incantation: spell.incantation,
+            effect: spell.effect,
+            type: spell.type,
+            creator: spell.creator
+        }
+        console.log(spellObject)
+        console.log(spell)
+        const [spellResult, created] = await Models.Spell.findOrCreate({
+            where: { name: spell.name },
+            defaults: spellObject
+        });
+    }
+    console.log('Successfully imported spells');
 }
 
 const getRandomSpell = () => {

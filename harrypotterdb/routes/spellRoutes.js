@@ -6,10 +6,6 @@ router.get('/', (req, res) => {
     Controllers.spellController.getSpells(res);
 })
 
-router.get('/init', (req, res) => {
-    Controllers.spellController.importSpells(res);
-})
-
 router.post('/create', (req, res) => {
     Controllers.spellController.createSpells(req.body, res)
 })
