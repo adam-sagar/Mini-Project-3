@@ -27,4 +27,4 @@ app.listen(PORT, () => {
     Controllers.houseController.importHouses();
     Controllers.spellController.importSpells();
     Controllers.wizardController.importWizards();
-});   
+});        
