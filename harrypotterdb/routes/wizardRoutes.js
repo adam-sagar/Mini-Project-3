@@ -6,8 +6,8 @@ router.get('/', (req, res) => {
     Controllers.wizardController.getWizards(res);
 })
 
-router.get('/firstName/:firstName', (req, res) => {
-    Controllers.wizardController.getWizardByFirstName(req, res);
+router.get('/search', (req, res) => {
+    Controllers.wizardController.getWizardBySearch(req, res);
 })
 
 router.post('/create', (req, res) => {

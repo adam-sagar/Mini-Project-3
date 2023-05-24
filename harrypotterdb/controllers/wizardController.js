@@ -32,22 +32,42 @@ const getWizards = (res) => {
         })
 }
 
-// modified getHouseById function to get a wizard by their first name instead
-const getWizardByFirstName = (req, res) => {
+const getWizardBySearch = (req, res) => {
+    const { firstName, lastName, fullName } = req.query;
+    let whereCondition = {};
 
-    const firstName = req.params.firstName;
+    if (firstName) {
+        whereCondition.firstName = firstName;
+    }
+
+    if (lastName) {
+        whereCondition.lastName = lastName;
+    }
+
+    if (fullName) {
+        const fullNameParts = fullName.split(' ');
+        whereCondition.firstName = fullNameParts[0];
+
+        if (fullNameParts.length > 1) {
+            whereCondition.lastName = fullNameParts.slice(1).join(' ');
+        }
+    }
 
     Models.Wizard.findOne({
-        where: { firstName: firstName }
+        where: whereCondition
     })
         .then(function (wizard) {
             if (!wizard) {
-                res.status(404).send({ error: `Wizard with first name ${firstName} not found.` })
+                res.status(404).send({ error: `Wizard not found.` });
             } else {
                 res.send({ result: 200, data: wizard });
             }
         })
-}
+        .catch(err => {
+            res.status(500).send({ error: 'Unable to retrieve wizard. Please try again later.' });
+        });
+};
+
 
 const createWizards = (data, res) => {
     Models.Wizard.create(data)
@@ -84,5 +104,5 @@ const deleteWizard = (req, res) => {
 }
 
 module.exports = {
-    getWizards, createWizards, updateWizard, deleteWizard, importWizards, getWizardByFirstName
+    getWizards, createWizards, updateWizard, deleteWizard, importWizards, getWizardBySearch
 }

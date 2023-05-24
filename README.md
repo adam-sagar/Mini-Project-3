@@ -36,7 +36,7 @@ The Harry Potter Database offers the following key features:
 
     -   Wizard Information:
 
-    Discover information about the various wizards and witches that inhabit the magical world. Users can use request parameters to get a single wizard's bio instead of retrieving all of them.
+    Discover information about the various wizards and witches that inhabit the magical world. By utilizing request queries, users can effortlessly search for a particular character by their first, last, or full name.
 
     -   Adding to Favorite House:
 
