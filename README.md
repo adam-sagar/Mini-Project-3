@@ -1,7 +1,85 @@
-# Mini-Project-3
+===== HARRY POTTER DATABASE README =====
 
-Welcome to my Harry Potter database.
+Welcome to my Harry Potter Database! This project was developed as part of the Institute of Data's Software Engineering bootcamp. It is a back-end-focused application that provides information about houses, spells, and wizards from the magical world of Harry Potter. The site retrieves data from an external API using Axios and populates the MySQL database upon server startup. Users can then retrieve, add, update, and delete data through Postman. This readme will guide you through the key features and technologies used in this project.
 
-Here you can explore a vast collection of wizarding knowledge. This database contains information on wizards, their houses, and the spells they cast.
 
-To get started, simply clone the repository and run it locally. Make sure to install the necessary dependencies, including axios, dotenv, express, mysql2, and sequelize, if you haven't already. You can do this easily by typing 'npm install (package name)' in the terminal.
+----- TECHNOLOGIES USED -----
+
+The Harry Potter Database utilizes the following technologies:
+
+    -   Node.js: A JavaScript runtime environment used for server-side scripting.
+
+    -   Express: A web application framework for Node.js used to build the server and handle HTTP requests.
+
+    -   MySQL: A relational database management system used to store and retrieve data.
+
+    -   Sequelize: A promise-based ORM (Object-Relational Mapping) for Node.js used for database management and query operations.
+
+    -   Axios: A library used to make HTTP requests to fetch data from an external API.
+
+    -   Postman: A popular API development and testing tool used for interacting with the back-end APIs.
+
+    -   External API: An API that provides data related to the Harry Potter universe.
+
+
+----- FEATURES -----
+
+The Harry Potter Database offers the following key features:
+
+    -   House Information:
+
+    Explore detailed information about the different houses in the Harry Potter series.
+
+    -   Spell Information:
+
+    Access a comprehensive list of spells used in the wizarding world. Additionally, users can hit a specific route to get a random spell.
+
+    -   Wizard Information:
+
+    Discover information about the various wizards and witches that inhabit the magical world. Users can use request parameters to get a single wizard's bio instead of retrieving all of them.
+
+    -   Adding to Favorite House:
+
+    Users can bypass the unpredictable sorting hat and join their favourite Hogwarts house directly.
+
+
+----- DEPLOYMENT -----
+
+To use the Harry Potter Database, follow these steps:
+
+    1   Clone the repository or download the source code.
+
+    2   Open the project in your preferred code editor.
+
+    3   Ensure you have Node.js and MySQL installed on your machine.
+
+    4   Create a .env file and add the following:
+
+            DB_NAME=harrypotterdb
+            DB_USER= *your MySQL user goes here*
+            DB_PASSWORD= *your MySQL password goes here*
+            DB_HOST=localhost
+            DB_PORT=3307
+
+            PORT=8001
+
+    5   Open MySQL Workbench and create a new schema called harrypotterdb. You can change the name but make sure to update your .env file.
+
+    6   Install the required dependencies by running npm install in the project directory.
+
+    7   Start the server by running npm start.
+
+    8   Open Postman or a similar API testing tool.
+
+    9   Explore the code to understand the available routes and request formats.
+
+    10  Interact with the different API endpoints to retrieve, add, update, or delete data.
+
+    11  Enjoy exploring the magical world of Harry Potter!
+
+
+----- CREDITS -----
+
+The Harry Potter Database was created by Adam Sagar. It utilizes data from an external API. Special thanks to MossPiglets the API provider for making this project possible and enabling us to delve into the enchanting realm of Harry Potter.
+
+Mischief managed

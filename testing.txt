@@ -1,0 +1,47 @@
+{
+    "name": "Couchus Flipparus",
+    "incantation": "Sofa-flipendo",
+    "effect": "Flips the target's sofa upside down",
+    "type": "Hex",
+    "creator": "Fred Weasley"
+}
+
+
+
+{
+    "name": "Wampus",
+    "houseColours": "Blue and bronze",
+    "founder": "Isolt Sayre",
+    "animal": "Cat",
+    "ghost": "Casper",
+    "commonRoom": "Circular Tower"
+}
+
+
+
+{
+    "firstName": "Adam",
+    "lastName": "Sagar",
+    "house": "Ravenclaw"
+}
+
+
+
+{
+    "name": "",
+    "houseColours": "",
+    "founder": "",
+    "animal": "",
+    "ghost": "",
+    "commonRoom": ""
+}
+
+
+
+{
+    "name": "",
+    "incantation": "",
+    "effect": "",
+    "type": "",
+    "creator": ""
+}
