@@ -33,23 +33,26 @@ const getWizards = (res) => {
 }
 
 const getWizardBySearch = (req, res) => {
-    const { firstName, lastName, fullName } = req.query;
-    let whereCondition = {};
+    
+
+    const { firstName, lastName, fullName } = req.query; // extracts the firstName, lastName, and fullName from the request query
+
+    let whereCondition = {}; // initializes an empty object to store the search conditions
 
     if (firstName) {
-        whereCondition.firstName = firstName;
+        whereCondition.firstName = firstName; // adds the firstName to the search conditions
     }
 
     if (lastName) {
-        whereCondition.lastName = lastName;
+        whereCondition.lastName = lastName; // adds the lastName to the search conditions
     }
 
     if (fullName) {
-        const fullNameParts = fullName.split(' ');
-        whereCondition.firstName = fullNameParts[0];
+        const fullNameParts = fullName.split(' '); // splits the fullName into an array of its parts (first name and last name)
+        whereCondition.firstName = fullNameParts[0]; // assigns the first part of the fullName as the firstName in the search conditions
 
         if (fullNameParts.length > 1) {
-            whereCondition.lastName = fullNameParts.slice(1).join(' ');
+            whereCondition.lastName = fullNameParts.slice(1).join(' '); // if the fullName has more than one part, assigns the remaining parts as the lastName in the search conditions (if more than one last name)
         }
     }
 
