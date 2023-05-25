@@ -1,9 +1,11 @@
 "use strict";
 const Models = require("../models");
 const axios = require("axios");
+const { Op } = require("sequelize");
 
 // gets data from external API and puts it into the database
 const importWizards = async () => {
+
     let response = await axios.get('https://wizard-world-api.herokuapp.com/Wizards')
     console.log(response.data);
     for (let wizard of response.data) {
@@ -20,9 +22,9 @@ const importWizards = async () => {
     }
     console.log('Successfully imported wizards');
 }
- 
-// lists all wizards on the endpoint /wizards
+
 const getWizards = (res) => {
+
     Models.Wizard.findAll({})
         .then(function (data) {
             res.send({ result: 200, data: data })
@@ -33,30 +35,38 @@ const getWizards = (res) => {
 }
 
 const getWizardBySearch = (req, res) => {
-    
 
-    const { firstName, lastName, fullName } = req.query; // extracts the firstName, lastName, and fullName from the request query
+    // retrieve the search query parameter from the request
+    const { search } = req.query;
 
-    let whereCondition = {}; // initializes an empty object to store the search conditions
+    // define the initial where condition as an empty object
+    let whereCondition = {};
 
-    if (firstName) {
-        whereCondition.firstName = firstName; // adds the firstName to the search conditions
-    }
+    // check if a search query is provided
+    if (search) {
+        // split the search query into individual words
+        const names = search.split(' ');
 
-    if (lastName) {
-        whereCondition.lastName = lastName; // adds the lastName to the search conditions
-    }
-
-    if (fullName) {
-        const fullNameParts = fullName.split(' '); // splits the fullName into an array of its parts (first name and last name)
-        whereCondition.firstName = fullNameParts[0]; // assigns the first part of the fullName as the firstName in the search conditions
-
-        if (fullNameParts.length > 1) {
-            whereCondition.lastName = fullNameParts.slice(1).join(' '); // if the fullName has more than one part, assigns the remaining parts as the lastName in the search conditions (if more than one last name)
+        // check the number of words in the search query
+        if (names.length === 1) {
+            // perform partial match search on firstName or lastName
+            whereCondition = {
+                [Op.or]: [
+                    { firstName: { [Op.like]: `%${search}%` } },
+                    { lastName: { [Op.like]: `%${search}%` } }
+                ]
+            };
+        } else if (names.length === 2) {
+            const [firstName, lastName] = names;
+            // perform separate partial match search on firstName and lastName
+            whereCondition = {
+                firstName: { [Op.like]: `%${firstName}%` },
+                lastName: { [Op.like]: `%${lastName}%` }
+            };
         }
     }
 
-    Models.Wizard.findOne({
+    Models.Wizard.findAll({
         where: whereCondition
     })
         .then(function (wizard) {
@@ -67,10 +77,10 @@ const getWizardBySearch = (req, res) => {
             }
         })
         .catch(err => {
+            console.error('Error retrieving wizard:', err);
             res.status(500).send({ error: 'Unable to retrieve wizard. Please try again later.' });
         });
 };
-
 
 const createWizards = (data, res) => {
     Models.Wizard.create(data)
@@ -81,7 +91,7 @@ const createWizards = (data, res) => {
             res.status(500).send({ error: 'Unable to create wizard. Please try again later.' });
         })
 }
- 
+
 const updateWizard = (req, res) => {
     Models.Wizard.update(req.body, {
         where: { id: req.params.id }
