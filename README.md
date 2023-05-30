@@ -63,7 +63,7 @@ To use the Harry Potter Database, follow these steps:
 
             PORT=8001
 
-    5   Open MySQL Workbench and create a new schema called harrypotterdb. You can change the name but make sure to update your .env file.
+    5   Open MySQL Workbench and create a new schema called harrypotterdb.
 
     6   Install the required dependencies by running npm install in the project directory.
 
