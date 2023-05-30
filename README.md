@@ -32,11 +32,13 @@ The Harry Potter Database offers the following key features:
 
     -   Spell Information:
 
-    Access a comprehensive list of spells used in the wizarding world. Additionally, users can hit a specific route to get a random spell.
+    Access a comprehensive list of spells used in the wizarding world.
+    Additionally, users can hit a specific route to get a random spell.
 
     -   Wizard Information:
 
-    Discover information about the various wizards and witches that inhabit the magical world. By utilizing request queries, users can effortlessly search for a particular character by their first, last, or full name.
+    Discover information about the various wizards and witches that inhabit the magical world.
+    By utilizing request queries, users can effortlessly search for a particular character by their first, last, or full name.
 
     -   Adding to Favorite House:
 
