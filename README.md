@@ -72,6 +72,8 @@ To use the Harry Potter Database, follow these steps:
     8   Open Postman or a similar API testing tool.
 
     9   Explore the code to understand the available routes and request formats.
+        They will all start with: http://localhost:8001/api/<route>
+        To visit a specific route, replace <route> with the desired route name.
 
     10  Interact with the different API endpoints to retrieve, add, update, or delete data.
 
